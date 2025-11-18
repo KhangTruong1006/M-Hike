@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">M-Hike</string>
+
+<!--    Title-->
+    <string name="title_homepage">Homepage</string>
+    <string name="title_hikes">Hikes</string>
+
+<!--    Buttons-->
+    <string name="btn_hike">Hike</string>
+    <string name="btn_observation">Observation</string>
+    <string name="btn_favorite">Favorite</string>
+    <string name="btn_manage">Manage</string>
+
+</resources>
