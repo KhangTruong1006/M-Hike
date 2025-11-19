@@ -20,7 +20,7 @@
             tools:layout_editor_absoluteY="-14dp">
 
             <TextView
-                android:id="@+id/tv_hike_name"
+                android:id="@+id/tvHikeName"
                 android:layout_width="250dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="9dp"
