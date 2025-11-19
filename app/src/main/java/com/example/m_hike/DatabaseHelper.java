@@ -34,15 +34,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String HIKE_TABLE_CREATE = String.format(
             "CREATE TABLE %s (" +
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "%s TEXT NOT NULL, " +
+                    "%s TEXT NOT NULL, " +
+                    "%s TEXT NOT NULL, " +
+                    "%s INTEGER NOT NULL, " +
+                    "%s REAL NOT NULL, " +
+                    "%s TEXT NOT NULL, " +
                     "%s TEXT, " +
-                    "%s TEXT, " +
-                    "%s TEXT, " +
-                    "%s INTEGER, " +
-                    "%s REAL, " +
-                    "%s TEXT, " +
-                    "%s TEXT, " +
-                    "%s INTEGER, " +
-                    "%s INTEGER) ",
+                    "%s INTEGER NOT NULL, " +
+                    "%s INTEGER NOT NULL) ",
             HikeTable.TABLE, HikeTable.ID_COLUMN, HikeTable.NAME_COLUMN, HikeTable.LOCATION_COLUMN, HikeTable.DATE_COLUMN,
             HikeTable.PARKING_COLUMN, HikeTable.LENGTH_COLUMN, HikeTable.DIFFICULTY_COLUMN, HikeTable.DESCRIPTION_COLUMN, HikeTable.FAVORITE_COLUMN, HikeTable.COMPLETED_COLUMN
     );
@@ -53,6 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase database){
+//        ! REMEMBER TO ADD THE SECOND TABLE !
         database.execSQL(HIKE_TABLE_CREATE);
     }
     @Override
@@ -80,8 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Hike> getHikeDetails(){
-        Cursor results = database.query(HikeTable.TABLE, new String[] {"hike_id","name","location","date","parking","length","difficulty","description","favorite","completed"},
-                null,null, null,null,"hike_id");
+        Cursor results = database.query(HikeTable.TABLE, new String[] {HikeTable.ID_COLUMN,"name","location","date","parking","length","difficulty","description","favorite","completed"},
+                null,null, null,null,HikeTable.ID_COLUMN);
 
         ArrayList<Hike> listHike = new ArrayList<>();
         results.moveToFirst();
