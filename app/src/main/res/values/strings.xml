@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">M-Hike</string>
 
-<!--    Title-->
+    <!--    Title-->
     <string name="title_homepage">Homepage</string>
     <string name="title_hikes">Hikes</string>
 
-<!--    Buttons-->
+    <!--    Buttons-->
     <string name="btn_hike">Hike</string>
     <string name="btn_observation">Observation</string>
     <string name="btn_favorite">Favorite</string>
     <string name="btn_manage">Manage</string>
+    <string name="btn_add_hike">Add Hike</string>
 
 </resources>
