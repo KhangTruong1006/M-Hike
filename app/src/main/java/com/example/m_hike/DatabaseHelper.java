@@ -2,10 +2,13 @@ package com.example.m_hike;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "m_hike_db";
@@ -66,13 +69,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         rowValues.put(HikeTable.NAME_COLUMN, hike.getName());
         rowValues.put(HikeTable.LOCATION_COLUMN, hike.getLocation());
         rowValues.put(HikeTable.DATE_COLUMN, hike.getDate());
-        rowValues.put(HikeTable.PARKING_COLUMN, hike.isParking());
+        rowValues.put(HikeTable.PARKING_COLUMN, hike.getParking());
         rowValues.put(HikeTable.LENGTH_COLUMN, hike.getLength());
         rowValues.put(HikeTable.DIFFICULTY_COLUMN, hike.getDifficulty());
         rowValues.put(HikeTable.DESCRIPTION_COLUMN, hike.getDescription());
-        rowValues.put(HikeTable.FAVORITE_COLUMN, hike.isFavorite());
-        rowValues.put(HikeTable.COMPLETED_COLUMN, hike.isCompleted());
+        rowValues.put(HikeTable.FAVORITE_COLUMN, hike.getFavorite());
+        rowValues.put(HikeTable.COMPLETED_COLUMN, hike.getCompleted());
 
         return database.insertOrThrow(HikeTable.TABLE,null,rowValues);
+    }
+
+    public ArrayList<Hike> getHikeDetails(){
+        Cursor results = database.query(HikeTable.TABLE, new String[] {"hike_id","name","location","date","parking","length","difficulty","description","favorite","completed"},
+                null,null, null,null,"hike_id");
+
+        ArrayList<Hike> listHike = new ArrayList<>();
+        results.moveToFirst();
+        while(!results.isAfterLast()){
+            int hike_id = results.getInt(0);
+            String name = results.getString(1);
+            String location = results.getString(2);
+            String date = results.getString(3);
+            int parking = results.getInt(4);
+            double length = results.getDouble(5);
+            String difficulty = results.getString(6);
+            String description = results.getString(7);
+            int favorite = results.getInt(8);
+            int completed = results.getInt(9);
+
+            listHike.add(new Hike(hike_id,name,location,date,parking,length,difficulty,description,favorite,completed));
+            results.moveToNext();
+        }
+        return listHike;
     }
 }
