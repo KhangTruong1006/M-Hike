@@ -1,6 +1,8 @@
 package com.example.m_hike;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,5 +40,10 @@ public class HikeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    public void clickAddButton(View view){
+        Intent intent = new Intent(this, NewHikeActivity.class);
+        startActivity(intent);
     }
 }
