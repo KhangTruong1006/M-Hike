@@ -35,7 +35,56 @@
             tools:layout_editor_absoluteY="64dp">
 
 
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_name"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="83dp" />
 
+            <EditText
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="112dp" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_location"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="183dp" />
+
+            <EditText
+                android:id="@+id/input_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="212dp" />
+
+            <TextView
+                android:id="@+id/tv_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_date"
+                tools:layout_editor_absoluteX="18dp"
+                tools:layout_editor_absoluteY="279dp" />
+
+            <EditText
+                android:id="@+id/input_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date" />
 
         </LinearLayout>
     </ScrollView>
