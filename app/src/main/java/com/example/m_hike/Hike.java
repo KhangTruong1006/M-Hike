@@ -5,15 +5,15 @@ public class Hike {
     private String name;
     private String location;
     private String date;
-    private boolean parking;
+    private int parking;
     private double length;
     private String difficulty;
     private String description;
-    private boolean favorite;
-    private boolean completed;
+    private int favorite;
+    private int completed;
 
-    public Hike(String name, String location, String date, boolean parking, double length,
-                String difficulty, String description, boolean favorite, boolean completed){
+    public Hike(String name, String location, String date, int parking, double length,
+                String difficulty, String description, int favorite, int completed){
         this.name = name;
         this.location = location;
         this.date = date;
@@ -25,8 +25,8 @@ public class Hike {
         this.completed = completed;
     }
 
-    public Hike(int id, String name, String location, String date, boolean parking, double length,
-                String difficulty, String description, boolean favorite, boolean completed){
+    public Hike(int id, String name, String location, String date, int parking, double length,
+                String difficulty, String description, int favorite, int completed){
         this.id = id;
         this.name = name;
         this.location = location;
@@ -67,10 +67,10 @@ public class Hike {
         return date;
     }
 
-    public void setParking(boolean parking){
+    public void setParking(int parking){
         this.parking = parking;
     }
-    public boolean isParking(){
+    public int getParking(){
         return parking;
     }
 
@@ -95,17 +95,17 @@ public class Hike {
         return description;
     }
 
-    public void setFavorite(boolean favorite){
+    public void setFavorite(int favorite){
         this.favorite = favorite;
     }
-    public boolean isFavorite(){
+    public int getFavorite(){
         return favorite;
     }
 
-    public void setCompleted(boolean completed){
+    public void setCompleted(int completed){
         this.completed = completed;
     }
-    public boolean isCompleted(){
+    public int getCompleted(){
         return completed;
     }
 }
