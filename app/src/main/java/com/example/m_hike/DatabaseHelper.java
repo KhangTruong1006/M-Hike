@@ -41,8 +41,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "%s REAL NOT NULL, " +
                     "%s TEXT NOT NULL, " +
                     "%s TEXT, " +
-                    "%s INTEGER NOT NULL, " +
-                    "%s INTEGER NOT NULL) ",
+                    "%s INTEGER NOT NULL DEFAULT 0, " +
+                    "%s INTEGER NOT NULL DEFAULT 0) ",
             HikeTable.TABLE, HikeTable.ID_COLUMN, HikeTable.NAME_COLUMN, HikeTable.LOCATION_COLUMN, HikeTable.DATE_COLUMN,
             HikeTable.PARKING_COLUMN, HikeTable.LENGTH_COLUMN, HikeTable.DIFFICULTY_COLUMN, HikeTable.DESCRIPTION_COLUMN, HikeTable.FAVORITE_COLUMN, HikeTable.COMPLETED_COLUMN
     );
