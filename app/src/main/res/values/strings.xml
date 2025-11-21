@@ -9,6 +9,8 @@
     <string name="tv_length">Length (Km)</string>
     <string name="tv_difficulty">Difficulty</string>
     <string name="tv_description">Description (Optional)</string>
+
+    <string name="tv_mandatory">*</string>
     
     <!--    Title-->
     <string name="title_homepage">Homepage</string>
@@ -28,6 +30,7 @@
     <string name="hint_location">London, Leeds</string>
     <string name="hint_date"> DD/MM/YYYY</string>
     <string name="hint_length">1.0 , 2.1</string>
+    <string name="hint_description">Description</string>
 
 <!--    Arrays-->
     <string-array name="difficulties_list">
