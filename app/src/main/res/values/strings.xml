@@ -20,7 +20,8 @@
     <string name="btn_observation">Observation</string>
     <string name="btn_favorite">Favorite</string>
     <string name="btn_manage">Manage</string>
-    <string name="btn_add_hike">Add Hike</string>
+    <string name="btn_add_hike">New Hike</string>
+    <string name="btn_save">Save</string>
 
 <!--    Hints-->
     <string name="hint_name">Snowdon, Trosley Country park</string>
