@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,15 @@ public class NewHikeActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_new_hike);
 
+        input_name = findViewById(R.id.input_name);
+        input_location = findViewById(R.id.input_location);
+        input_date = findViewById(R.id.input_date);
+        input_length = findViewById(R.id.input_length);
+        input_description = findViewById(R.id.input_description);
+
+        cb_parking = findViewById(R.id.cb_parking);
+        spinner_difficulty = findViewById(R.id.spinner_difficulty);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -33,22 +43,17 @@ public class NewHikeActivity extends AppCompatActivity {
     }
     private void saveHikeDetails(){
         DatabaseHelper dbHelper = new DatabaseHelper(this);
-        input_name = findViewById(R.id.input_name);
-        input_location = findViewById(R.id.input_location);
-        input_date = findViewById(R.id.input_date);
-        input_length = findViewById(R.id.input_length);
-        input_description = findViewById(R.id.input_description);
-
-
-        spinner_difficulty = findViewById(R.id.spinner_difficulty);
 
         String name = input_name.getText().toString().trim();
         String location = input_location.getText().toString().trim();
         String date = input_date.getText().toString().trim();
+
         double length = Double.parseDouble(input_length.getText().toString().trim());
         int parking = getCheckBoxValue();
+
         String difficulty = spinner_difficulty.getSelectedItem().toString();
         String description = input_description.getText().toString().trim();
+
         int favorite = 0;
         int completed = 0;
 
@@ -61,7 +66,6 @@ public class NewHikeActivity extends AppCompatActivity {
         finish();
     }
     private int getCheckBoxValue(){
-        cb_parking = findViewById(R.id.cb_parking);
         if(cb_parking.isChecked()){
             return 1;
         } else {
@@ -70,10 +74,23 @@ public class NewHikeActivity extends AppCompatActivity {
     }
 
     public void clickSaveButton(View view){
-        saveHikeDetails();
+        if(!isMandatoryFieldsEmpty(view)){
+            saveHikeDetails();
+        }
+        else{
+            Toast.makeText(this,"Please fill all mandatory fields",Toast.LENGTH_LONG).show();
+        }
     }
     private boolean isMandatoryFieldsEmpty(View view){
-
-        return false;
+        String name = input_name.getText().toString().trim();
+        String location = input_location.getText().toString().trim();
+        String date = input_date.getText().toString().trim();
+        String length = input_length.getText().toString().trim();
+        if (name.equalsIgnoreCase("") || location.equalsIgnoreCase("") || date.equalsIgnoreCase("") || length.equalsIgnoreCase("")) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
