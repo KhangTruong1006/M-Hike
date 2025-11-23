@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.fragment)
     implementation(libs.cardview)
     implementation(libs.recyclerview)
+    implementation(libs.androidx.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
