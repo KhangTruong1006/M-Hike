@@ -1,8 +1,10 @@
 package com.example.m_hike.Hike;
 
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,16 +28,31 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull HikeViewHolder holder, int position){
-        holder.tvHikeName.setText(hikes.get(position).getName());
-        holder.tvDate.setText(hikes.get(position).getDate());
-        holder.tvLocation.setText(hikes.get(position).getLocation());
-        holder.tvLength.setText(hikes.get(position).getLength() + "km");
-        holder.tvDifficulty.setText(hikes.get(position).getDifficulty());
+        Hike current = hikes.get(position);
 
-        String parking = (hikes.get(position).getParking() == 1)? "Available" : "Unavailable";
+        holder.tvHikeName.setText(current.getName());
+        holder.tvDate.setText(current.getDate());
+        holder.tvLocation.setText(current.getLocation());
+        holder.tvLength.setText(current.getLength() + "km");
+        holder.tvDifficulty.setText(current.getDifficulty());
+
+        String parking = (current.getParking() == 1)? "Available" : "Unavailable";
         holder.tvParking.setText(parking);
 
-        holder.tvDescription.setText(hikes.get(position).getDescription());
+
+        if(!current.getDescription().equalsIgnoreCase("")) {
+            holder.tvDescription.setText(current.getDescription());
+            holder.itemHikeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (holder.tvDescription.getVisibility() == View.VISIBLE) {
+                        holder.tvDescription.setVisibility(View.GONE);
+                    } else {
+                        holder.tvDescription.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -43,6 +60,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
 
     public class HikeViewHolder extends RecyclerView.ViewHolder{
         public TextView tvHikeName, tvDate, tvLocation, tvParking, tvLength, tvDifficulty,tvDescription;
+        public LinearLayout itemHikeLayout;
 
         public HikeViewHolder(@NonNull View itemView){
             super(itemView);
@@ -53,6 +71,8 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
             tvLength = itemView.findViewById(R.id.tv_item_hike_length);
             tvDifficulty = itemView.findViewById(R.id.tv_item_hike_difficulty);
             tvDescription = itemView.findViewById(R.id.tv_item_hike_description);
+            itemHikeLayout = itemView.findViewById(R.id.item_hike_layout);
+
         }
     }
 }
