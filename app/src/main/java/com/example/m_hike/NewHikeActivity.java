@@ -14,6 +14,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.m_hike.DatabaseHelper.DatabaseHelper;
+import com.example.m_hike.Hike.Hike;
+
 public class NewHikeActivity extends AppCompatActivity {
 
     private EditText input_name, input_location, input_date, input_length, input_description;
