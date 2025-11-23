@@ -1,4 +1,4 @@
-package com.example.m_hike;
+package com.example.m_hike.Hike;
 
 public class Hike {
     private int id;
