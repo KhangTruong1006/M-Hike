@@ -12,6 +12,10 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.m_hike.DatabaseHelper.DatabaseHelper;
+import com.example.m_hike.Hike.Hike;
+import com.example.m_hike.Hike.HikeAdapter;
+
 import java.util.ArrayList;
 
 public class HikeActivity extends AppCompatActivity {
