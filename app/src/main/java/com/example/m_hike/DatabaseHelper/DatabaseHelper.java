@@ -1,4 +1,4 @@
-package com.example.m_hike;
+package com.example.m_hike.DatabaseHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
+
+import com.example.m_hike.Hike.Hike;
 
 import java.util.ArrayList;
 
