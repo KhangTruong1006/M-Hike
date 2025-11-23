@@ -10,6 +10,7 @@ constraintlayout = "2.2.1"
 fragment = "1.8.9"
 cardview = "1.0.0"
 recyclerview = "1.4.0"
+materialVersion = "1.10.0-rc01"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -22,6 +23,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-material = { group = "androidx.compose.material", name = "material", version.ref = "materialVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
