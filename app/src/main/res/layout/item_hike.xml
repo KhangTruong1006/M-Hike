@@ -49,12 +49,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/tv_name" />
 
                 <TextView
                     android:id="@+id/tv_item_hike_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
                     android:text="@string/hint_name"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -67,12 +69,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/tv_date" />
 
                 <TextView
                     android:id="@+id/tv_item_hike_date"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="9"
                     android:text="@string/hint_date"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -85,12 +89,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/tv_parking_available" />
 
                 <TextView
                     android:id="@+id/tv_item_hike_parking"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="9"
                     android:text="Parking available"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -103,12 +109,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/tv_length" />
 
                 <TextView
                     android:id="@+id/tv_item_hike_length"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="9"
                     android:text="Length"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -121,14 +129,28 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/tv_difficulty" />
 
                 <TextView
                     android:id="@+id/tv_item_hike_difficulty"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="9"
                     android:text="Easy"
                     android:textAlignment="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+                <TextView
+                    android:id="@+id/tv_item_hike_completion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_completion"
+                    android:textAlignment="center"/>
             </LinearLayout>
 
 
@@ -142,7 +164,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_description"
+                android:text="@string/hint_description"
                 android:visibility="gone" />
 
             <TextView
@@ -151,6 +173,28 @@
                 android:layout_height="wrap_content"
                 android:text="Test"
                 android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_favorite"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:src="@drawable/favorite_24dp_b7b7b7_fill0_wght400_grad0_opsz24" />
+
+                <ImageButton
+                    android:id="@+id/btn_edit_hike"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:src="@drawable/edit_24dp_b7b7b7_fill0_wght400_grad0_opsz24" />
+            </LinearLayout>
         </LinearLayout>
 
 
