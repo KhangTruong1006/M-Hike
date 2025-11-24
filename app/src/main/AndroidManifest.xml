@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MHike">
         <activity
+            android:name=".EditHikeActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewHikeActivity"
             android:exported="false" />
         <activity
