@@ -11,8 +11,7 @@
     <ScrollView
         android:id="@+id/scrollView4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteY="50dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,7 +26,7 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="411dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="@string/title_input"
@@ -134,7 +133,7 @@
 
             <Spinner
                 android:id="@+id/spinner_difficulty"
-                android:layout_width="393dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:entries="@array/difficulties_list"
                 tools:layout_editor_absoluteX="9dp"
