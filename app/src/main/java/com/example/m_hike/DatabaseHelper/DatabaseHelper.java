@@ -82,7 +82,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return database.insertOrThrow(HikeTable.TABLE,null,rowValues);
     }
 
-    public ArrayList<Hike> getHikeDetails(){
+    public Hike findHikeById(int id){
+        String query = String.format("SELECT * FROM %s WHERE %s = ?",HikeTable.TABLE, HikeTable.ID_COLUMN);
+        String[] selectionArgs = new String[]{String.valueOf(id)};
+        Cursor result = database.rawQuery(query,selectionArgs);
+
+        if(result.moveToFirst()){
+            int hike_id = result.getInt(0);
+            String name = result.getString(1);
+            String location = result.getString(2);
+            String date = result.getString(3);
+            int parking = result.getInt(4);
+            double length = result.getDouble(5);
+            String difficulty = result.getString(6);
+            String description = result.getString(7);
+            int favorite = result.getInt(8);
+            int completed = result.getInt(9);
+
+            Hike hike = new Hike(hike_id,name,location,date,parking,length,difficulty,description,favorite,completed);
+            result.close();
+            return hike;
+        }
+
+        result.close();
+        return null;
+    }
+    public ArrayList<Hike> getHikes(){
         Cursor results = database.query(HikeTable.TABLE, new String[] {HikeTable.ID_COLUMN,"name","location","date","parking","length","difficulty","description","favorite","completed"},
                 null,null, null,null,HikeTable.ID_COLUMN);
 
