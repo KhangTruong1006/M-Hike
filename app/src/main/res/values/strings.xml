@@ -1,17 +1,19 @@
 <resources>
     <string name="app_name">M-Hike</string>
 
-<!--    Text View-->
+    <!--    Text View-->
     <string name="tv_name">Name</string>
     <string name="tv_location">Location</string>
     <string name="tv_date">Date</string>
     <string name="tv_parking_available">Parking</string>
-    <string name="tv_length">Length (Km)</string>
+    <string name="tv_length">Length</string>
     <string name="tv_difficulty">Difficulty</string>
     <string name="tv_description">Description (Optional)</string>
+    <string name="tv_completion">Completed</string>
+    <string name="tv_edit">Edit</string>
 
     <string name="tv_mandatory">*</string>
-    
+
     <!--    Title-->
     <string name="title_homepage">Homepage</string>
     <string name="title_hikes">Hikes</string>
@@ -25,14 +27,14 @@
     <string name="btn_add_hike">New Hike</string>
     <string name="btn_save">Save</string>
 
-<!--    Hints-->
+    <!--    Hints-->
     <string name="hint_name">Snowdon, Trosley Country park</string>
     <string name="hint_location">London, Leeds</string>
     <string name="hint_date"> DD/MM/YYYY</string>
-    <string name="hint_length">1.0 , 2.1</string>
+    <string name="hint_length">1.0 , 2.1 (Km)</string>
     <string name="hint_description">Description</string>
 
-<!--    Arrays-->
+    <!--    Arrays-->
     <string-array name="difficulties_list">
         <item>Beginner</item>
         <item>Intermediate</item>
