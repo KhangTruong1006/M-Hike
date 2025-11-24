@@ -34,7 +34,7 @@ public class HikeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         DatabaseHelper db = new DatabaseHelper(this);
-        ArrayList<Hike> hikes = db.getHikeDetails();
+        ArrayList<Hike> hikes = db.getHikes();
 
         hikeAdapter = new HikeAdapter(hikes);
         recyclerView.setAdapter(hikeAdapter);
