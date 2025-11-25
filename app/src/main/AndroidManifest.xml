@@ -12,13 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MHike">
         <activity
-            android:name=".EditHikeActivity"
+            android:name=".Observation.ObservationNewActivity"
             android:exported="false" />
         <activity
-            android:name=".NewHikeActivity"
+            android:name=".Observation.ObservationActivity"
             android:exported="false" />
         <activity
-            android:name=".HikeActivity"
+            android:name=".Hike.EditHikeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hike.NewHikeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hike.HikeActivity"
             android:exported="false" />
         <activity
             android:name=".HomepageActivity"
