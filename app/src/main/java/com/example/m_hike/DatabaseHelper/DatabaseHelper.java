@@ -31,6 +31,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         public static final String COMPLETED_COLUMN = "completed";
     }
 
+    public static class ObservationTable implements BaseColumns{
+        public static final String TABLE = "observations";
+        public static final String ID_COLUMN ="observation_id";
+        public static final String OBSERVATION_COLUMN = "observation";
+        public static final String DATE_COLUMN ="date";
+        public static final String TYPE_COLUMN ="type";
+        public static final String DESCRIPTION_COLUMN = "description";
+        public static final String HIKE_ID_COLUMN ="hike_id";
+    }
+
     private SQLiteDatabase database;
 
     private static final String HIKE_TABLE_CREATE = String.format(
@@ -49,6 +59,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             HikeTable.PARKING_COLUMN, HikeTable.LENGTH_COLUMN, HikeTable.DIFFICULTY_COLUMN, HikeTable.DESCRIPTION_COLUMN, HikeTable.FAVORITE_COLUMN, HikeTable.COMPLETED_COLUMN
     );
 
+    private static final String OBSERVATION_TABLE_CREATE = String.format(
+            "CREATE TABLE %s (" +
+                "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "%s TEXT NOT NULL, " +
+                "%s INTEGER NOT NULL, " +
+                "%s TEXT, " +
+                "%s TEXT, " +
+                "FOREIGN KEY (%s) REFERENCES %s (%s))",
+            ObservationTable.TABLE, ObservationTable.ID_COLUMN,ObservationTable.OBSERVATION_COLUMN,
+            ObservationTable.DATE_COLUMN,ObservationTable.TYPE_COLUMN, ObservationTable.DESCRIPTION_COLUMN,
+            ObservationTable.HIKE_ID_COLUMN, HikeTable.TABLE, HikeTable.ID_COLUMN
+    );
+
     public DatabaseHelper(Context context){
         super(context,DATABASE_NAME,null,1);
         database =getWritableDatabase();
@@ -57,11 +80,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database){
 //        ! REMEMBER TO ADD THE SECOND TABLE !
         database.execSQL(HIKE_TABLE_CREATE);
+        database.execSQL(OBSERVATION_TABLE_CREATE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         //        Automatically called if db version number changes
-        db.execSQL("DROP TABLE IF EXISTS " + DATABASE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + HikeTable.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + ObservationTable.TABLE);
 
         Log.w(this.getClass().getName(), DATABASE_NAME + " database has upgraded to version " + newVersion + " - old data lost");
         onCreate(db);
