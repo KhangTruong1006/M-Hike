@@ -12,7 +12,7 @@
     <string name="tv_completion">Completed</string>
     <string name="tv_edit">Edit</string>
 
-    <string name="tv_mandatory">*</string>
+    <string name="tv_asterisk">*</string>
 
     <!--    Title-->
     <string name="title_homepage">Homepage</string>
@@ -25,7 +25,7 @@
     <string name="btn_observation">Observation</string>
     <string name="btn_favorite">Favorite</string>
     <string name="btn_manage">Manage</string>
-    <string name="btn_add_hike">New Hike</string>
+    <string name="btn_add">New</string>
     <string name="btn_save">Save</string>
     <string name="btn_delete">Delete</string>
     <string name="btn_cancel">Cancel</string>
@@ -40,6 +40,8 @@
     <!--    Message-->
     <string name="msg_mandatory_fields">Please fill all mandatory fields</string>
     <string name="msg_delete_hike_confirmation">Are you sure to delete </string>
+    <string name="msg_new_hike">New hike has created successfully</string>
+
     <!--    Arrays-->
     <string-array name="difficulties_list">
         <item>Beginner</item>
