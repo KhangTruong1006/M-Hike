@@ -1,5 +1,6 @@
 package com.example.m_hike;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.m_hike.Hike.HikeActivity;
+import com.example.m_hike.Observation.ObservationNewActivity;
 
 public class HomepageActivity extends AppCompatActivity {
 
@@ -25,7 +29,12 @@ public class HomepageActivity extends AppCompatActivity {
     }
 
     public void startHikeActivity(View view){
-        Intent intent = new Intent(this,HikeActivity.class);
+        Intent intent = new Intent(this, HikeActivity.class);
+        startActivity(intent);
+    }
+
+    public void startObservationActivity(View view){
+        Intent intent = new Intent(this, ObservationNewActivity.class);
         startActivity(intent);
     }
 }
