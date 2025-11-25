@@ -143,6 +143,7 @@
                 tools:layout_editor_absoluteY="414dp" />
 
             <CheckBox
+                android:id="@+id/cb_edit_completion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_completion" />
@@ -166,15 +167,32 @@
                 android:inputType="textMultiLine"
                 tools:layout_editor_absoluteX="10dp"
                 tools:layout_editor_absoluteY="522dp" />
-
-            <Button
-                android:id="@+id/btn_save_hike"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/btn_save"
-                tools:layout_editor_absoluteX="162dp"
-                tools:layout_editor_absoluteY="763dp" />
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_delete_hike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:onClick="clickDeleteButton"
+                    android:text="@string/btn_delete" />
+                <Button
+                    android:id="@+id/btn_save_hike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_gravity="center"
+                    android:onClick="clickSaveEditButton"
+                    android:text="@string/btn_save"
+                    tools:layout_editor_absoluteX="162dp"
+                    tools:layout_editor_absoluteY="763dp" />
+            </LinearLayout>
+
+
 
 
         </LinearLayout>
