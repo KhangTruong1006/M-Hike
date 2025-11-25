@@ -194,6 +194,14 @@
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackground"
                     android:src="@drawable/edit_24dp_b7b7b7_fill0_wght400_grad0_opsz24" />
+
+                <ImageButton
+                    android:id="@+id/btn_delete_hike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:src="@drawable/delete_24dp_b7b7b7_fill0_wght400_grad0_opsz24"/>
             </LinearLayout>
         </LinearLayout>
 
