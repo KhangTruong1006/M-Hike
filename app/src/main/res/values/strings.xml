@@ -18,6 +18,7 @@
     <string name="title_homepage">Homepage</string>
     <string name="title_hikes">Hikes</string>
     <string name="title_input">Enter Information below</string>
+    <string name="title_delete_hike">Delete Hike</string>
 
     <!--    Buttons-->
     <string name="btn_hike">Hike</string>
@@ -26,6 +27,8 @@
     <string name="btn_manage">Manage</string>
     <string name="btn_add_hike">New Hike</string>
     <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_cancel">Cancel</string>
 
     <!--    Hints-->
     <string name="hint_name">Snowdon, Trosley Country park</string>
@@ -34,6 +37,9 @@
     <string name="hint_length">1.0 , 2.1 (Km)</string>
     <string name="hint_description">Description</string>
 
+    <!--    Message-->
+    <string name="msg_mandatory_fields">Please fill all mandatory fields</string>
+    <string name="msg_delete_hike_confirmation">Are you sure to delete </string>
     <!--    Arrays-->
     <string-array name="difficulties_list">
         <item>Beginner</item>
