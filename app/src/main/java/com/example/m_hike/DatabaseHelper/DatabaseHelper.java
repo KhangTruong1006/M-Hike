@@ -77,6 +77,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.update(HikeTable.TABLE,rowValues,HikeTable.ID_COLUMN+ " = ?", new String[]{String.valueOf(id)});
     }
 
+    public void updateFavoriteStatus(int id, int favoriteStatus){
+        ContentValues values = new ContentValues();
+        values.put(HikeTable.FAVORITE_COLUMN, favoriteStatus);
+        database.update(HikeTable.TABLE,values,HikeTable.ID_COLUMN+ " = ?", new String[]{String.valueOf(id)});
+    }
+
     public Hike findHikeById(int id){
         String query = String.format("SELECT * FROM %s WHERE %s = ?",HikeTable.TABLE, HikeTable.ID_COLUMN);
         String[] selectionArgs = new String[]{String.valueOf(id)};
