@@ -1,6 +1,7 @@
 package com.example.m_hike.Hike;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -10,8 +11,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.m_hike.DatabaseHelper.DatabaseHelper;
 import com.example.m_hike.EditHikeActivity;
 import com.example.m_hike.R;
 
@@ -21,7 +24,11 @@ import java.util.ArrayList;
 
 public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder> {
     private ArrayList<Hike> hikes;
-    public HikeAdapter(ArrayList<Hike> hikes){this.hikes = hikes;}
+    private DatabaseHelper db;
+    public HikeAdapter(ArrayList<Hike> hikes, DatabaseHelper db){
+        this.hikes = hikes;
+        this.db = db;
+    }
 
     @NonNull
     @Override
@@ -32,6 +39,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull HikeViewHolder holder, int position){
+
         Hike current = hikes.get(position);
 
         holder.tvHikeName.setText(current.getName());
@@ -46,15 +54,33 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
         String completion = (current.getCompleted() == 1)? "Completed" : "Not Completed";
         holder.tvCompletion.setText(completion);
 
+        int favorite = current.getFavorite();
+        if(favorite == 1){
+            holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_ea3323_fill1_wght400_grad0_opsz24);
+        } else {
+            holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_b7b7b7_fill0_wght400_grad0_opsz24);
+        }
 
-        setFavoriteButton(holder, current);
         enableDescription(holder,current);
-
         clickEditButton(holder,current);
 
+        clickDeleteButton(holder,current,position);
 
-//        clickFavoriteButton(holder, current);
+        holder.btn_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(current.getFavorite() == 0){
+                    current.setFavorite(1);
+                    holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_ea3323_fill1_wght400_grad0_opsz24);
+                    db.updateFavoriteStatus(current.getId(),1);
 
+                } else {
+                    current.setFavorite(0);
+                    holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_b7b7b7_fill0_wght400_grad0_opsz24);
+                    db.updateFavoriteStatus(current.getId(),0);
+                }
+            }
+        });
     }
 
     @Override
@@ -63,7 +89,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
     public class HikeViewHolder extends RecyclerView.ViewHolder{
         public TextView tvHikeName, tvDate, tvLocation, tvParking, tvLength, tvDifficulty,tvCompletion,tvDescription;
         public LinearLayout itemHikeLayout;
-        public ImageButton btn_favorite, btn_edit_hike;
+        public ImageButton btn_favorite, btn_edit_hike, btn_delete_hike;
 
         public HikeViewHolder(@NonNull View itemView){
             super(itemView);
@@ -78,6 +104,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
             itemHikeLayout = itemView.findViewById(R.id.item_hike_layout);
             btn_favorite = itemView.findViewById(R.id.btn_favorite);
             btn_edit_hike = itemView.findViewById(R.id.btn_edit_hike);
+            btn_delete_hike = itemView.findViewById(R.id.btn_delete_hike);
 
         }
     }
@@ -110,27 +137,35 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
         });
     }
 
-    private void setFavoriteButton(@NonNull HikeViewHolder holder, Hike current){
-        if(current.getFavorite() == 0){
-            holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_b7b7b7_fill0_wght400_grad0_opsz24);
-        }
-        else{
-            holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_ea3323_fill1_wght400_grad0_opsz24);
-        }
+    private void clickDeleteButton(@NonNull HikeViewHolder holder, Hike current, int position){
+        holder.btn_delete_hike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                AlertDialog dialog = createDialog(context,current,position);
+                dialog.show();
+            }
+        });
     }
 
-//    public void clickFavoriteButton(@NonNull HikeViewHolder holder, Hike current){
-//        holder.btn_favorite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(current.getFavorite() == 0){
-//                    current.setFavorite(1);
-//                    holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_b7b7b7_fill0_wght400_grad0_opsz24);
-//                } else {
-//                    current.setFavorite(0);
-//                    holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_ea3323_fill1_wght400_grad0_opsz24);
-//                }
-//            }
-//        });
-//    }
+    AlertDialog createDialog(Context context, Hike current, int position){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(R.string.title_delete_hike);
+
+        String message = context.getString(R.string.msg_delete_hike_confirmation) + " " + current.getName() + "?";
+        builder.setMessage(message);
+
+        builder.setPositiveButton(R.string.btn_delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                db.deleteHike(current.getId());
+                hikes.remove(position);
+                notifyItemRemoved( position);
+            }
+        });
+
+        builder.setNegativeButton(R.string.btn_cancel, null);
+
+        return builder.create();
+    }
 }
