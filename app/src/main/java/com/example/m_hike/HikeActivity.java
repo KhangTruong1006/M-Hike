@@ -45,7 +45,7 @@ public class HikeActivity extends AppCompatActivity {
 
     private void refreshRecyclerView(){
         ArrayList<Hike> hikes = db.getHikes();
-        hikeAdapter = new HikeAdapter(hikes);
+        hikeAdapter = new HikeAdapter(hikes,db);
         recyclerView.setAdapter(hikeAdapter);
     }
 
