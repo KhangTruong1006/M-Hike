@@ -22,6 +22,7 @@ public class HikeActivity extends AppCompatActivity {
     RecyclerView.Adapter hikeAdapter;
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +34,25 @@ public class HikeActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        DatabaseHelper db = new DatabaseHelper(this);
-        ArrayList<Hike> hikes = db.getHikes();
-
-        hikeAdapter = new HikeAdapter(hikes);
-        recyclerView.setAdapter(hikeAdapter);
+        db = new DatabaseHelper(this);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void refreshRecyclerView(){
+        ArrayList<Hike> hikes = db.getHikes();
+        hikeAdapter = new HikeAdapter(hikes);
+        recyclerView.setAdapter(hikeAdapter);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        refreshRecyclerView();
     }
 
     public void clickAddButton(View view){
