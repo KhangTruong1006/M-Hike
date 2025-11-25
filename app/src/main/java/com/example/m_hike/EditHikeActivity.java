@@ -104,30 +104,22 @@ public class EditHikeActivity extends AppCompatActivity {
     }
 
     public void clickSaveEditButton(View view){
-        saveHikeEdit();
+        if(!isMandatoryFieldsEmpty(view)){
+            saveHikeEdit();
+            return;
+        }
+        helper.showMessage(this,R.string.msg_mandatory_fields);
     }
 
-    public void clickDeleteButton(View view){
-        AlertDialog dialog = createDialog();
-        dialog.show();
-    }
+    private boolean isMandatoryFieldsEmpty(View view){
 
-    AlertDialog createDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.title_delete_hike);
-
-        String message = getString(R.string.msg_delete_hike_confirmation) + " " + hike.getName() + "?";
-        builder.setMessage(message);
-
-        builder.setPositiveButton(R.string.btn_delete, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                deleteHike();
-            }
-        });
-
-        builder.setNegativeButton(R.string.btn_cancel, null);
-
-        return builder.create();
+        String name = helper.getStringFromEditText(input_name);
+        String location = helper.getStringFromEditText(input_location);
+        String date = helper.getStringFromEditText(input_date);
+        String length = helper.getStringFromEditText(input_length);
+        if (name.isEmpty() || location.isEmpty() || date.isEmpty()|| length.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

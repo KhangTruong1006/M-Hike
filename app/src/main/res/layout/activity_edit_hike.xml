@@ -35,14 +35,27 @@
                 android:text="@string/title_input"
                 android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
-                android:text="@string/tv_name"
-                tools:layout_editor_absoluteX="9dp"
-                tools:layout_editor_absoluteY="62dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_name"
+                    tools:layout_editor_absoluteX="9dp"
+                    tools:layout_editor_absoluteY="62dp" />
+
+                <TextView
+                    style="@style/MandatoryAsterisk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_asterisk" />
+            </LinearLayout>
+
+
 
             <EditText
                 android:id="@+id/input_edit_name"
@@ -167,34 +180,17 @@
                 android:inputType="textMultiLine"
                 tools:layout_editor_absoluteX="10dp"
                 tools:layout_editor_absoluteY="522dp" />
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <Button
+                android:id="@+id/btn_save_hike"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <Button
-                    android:id="@+id/btn_delete_hike"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:onClick="clickDeleteButton"
-                    android:text="@string/btn_delete" />
-                <Button
-                    android:id="@+id/btn_save_hike"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_gravity="center"
-                    android:onClick="clickSaveEditButton"
-                    android:text="@string/btn_save"
-                    tools:layout_editor_absoluteX="162dp"
-                    tools:layout_editor_absoluteY="763dp" />
-            </LinearLayout>
-
-
-
-
+                android:layout_marginHorizontal="5dp"
+                android:layout_gravity="center"
+                android:onClick="clickSaveEditButton"
+                android:text="@string/btn_save"
+                tools:layout_editor_absoluteX="162dp"
+                tools:layout_editor_absoluteY="763dp" />
         </LinearLayout>
     </ScrollView>
 
