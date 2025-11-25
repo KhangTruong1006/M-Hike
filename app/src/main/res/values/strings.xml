@@ -14,11 +14,16 @@
 
     <string name="tv_asterisk">*</string>
 
+    <string name="tv_observation">Observation</string>
+    <string name="tv_type">Type</string>
+
     <!--    Title-->
     <string name="title_homepage">Homepage</string>
     <string name="title_hikes">Hikes</string>
-    <string name="title_input">Enter Information below</string>
+    <string name="title_hike_input">Enter Hike below</string>
     <string name="title_delete_hike">Delete Hike</string>
+
+    <string name="title_observation_input">Enter Observation below</string>
 
     <!--    Buttons-->
     <string name="btn_hike">Hike</string>
@@ -37,6 +42,7 @@
     <string name="hint_length">1.0 , 2.1 (Km)</string>
     <string name="hint_description">Description</string>
 
+    <string name="hint_observation">A cute fox</string>
     <!--    Message-->
     <string name="msg_mandatory_fields">Please fill all mandatory fields</string>
     <string name="msg_delete_hike_confirmation">Are you sure to delete </string>
@@ -47,5 +53,14 @@
         <item>Beginner</item>
         <item>Intermediate</item>
         <item>Expert</item>
+    </string-array>
+
+    <string-array name="observation_types_list">
+        <item>Animal</item>
+        <item>Scenery</item>
+        <item>Trails Condition</item>
+        <item>Vegetation</item>
+        <item>Weather</item>
+        <item>Others</item>
     </string-array>
 </resources>
