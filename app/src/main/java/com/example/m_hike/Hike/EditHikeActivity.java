@@ -1,6 +1,5 @@
-package com.example.m_hike;
+package com.example.m_hike.Hike;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.m_hike.DatabaseHelper.DatabaseHelper;
 import com.example.m_hike.Helper.Helper;
-import com.example.m_hike.Hike.Hike;
+import com.example.m_hike.R;
 
 public class EditHikeActivity extends AppCompatActivity {
     private DatabaseHelper db;

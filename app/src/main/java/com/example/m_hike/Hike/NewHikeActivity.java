@@ -1,6 +1,5 @@
-package com.example.m_hike;
+package com.example.m_hike.Hike;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.m_hike.DatabaseHelper.DatabaseHelper;
 import com.example.m_hike.Helper.Helper;
-import com.example.m_hike.Hike.Hike;
+import com.example.m_hike.R;
 
 public class NewHikeActivity extends AppCompatActivity {
 

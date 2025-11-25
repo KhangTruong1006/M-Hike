@@ -1,4 +1,4 @@
-package com.example.m_hike;
+package com.example.m_hike.Hike;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m_hike.DatabaseHelper.DatabaseHelper;
-import com.example.m_hike.Hike.Hike;
-import com.example.m_hike.Hike.HikeAdapter;
+import com.example.m_hike.R;
 
 import java.util.ArrayList;
 
