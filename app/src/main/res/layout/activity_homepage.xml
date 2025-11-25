@@ -41,6 +41,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="26dp"
+        android:onClick="startObservationActivity"
         android:text="@string/btn_observation"
         app:layout_constraintBottom_toTopOf="@+id/btn_favorite"
         app:layout_constraintEnd_toEndOf="parent"
