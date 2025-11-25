@@ -1,5 +1,6 @@
 package com.example.m_hike;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -71,31 +72,20 @@ public class NewHikeActivity extends AppCompatActivity {
     public void clickSaveButton(View view){
         if(!isMandatoryFieldsEmpty(view)){
             saveHikeDetails();
+            hp.showMessage(this,R.string.msg_new_hike);
             return;
         }
         hp.showMessage(this,R.string.msg_mandatory_fields);
     }
     private boolean isMandatoryFieldsEmpty(View view){
 
-        String[] fields = getMandatoryField();
-
-//        0 - Name
-//        1 - Location
-//        2 - Date
-//        3 - Length
-
-        if (fields[0].equalsIgnoreCase("") || fields[1].equalsIgnoreCase("") || fields[3].equalsIgnoreCase("") || fields[4].equalsIgnoreCase("")) {
+        String name = input_name.getText().toString().trim();
+        String location = input_location.getText().toString().trim();
+        String date = input_date.getText().toString().trim();
+        String length = input_length.getText().toString().trim();
+        if (name.isEmpty() || location.isEmpty() || date.isEmpty()|| length.isEmpty()) {
             return true;
         }
         return false;
-    }
-
-    private String[] getMandatoryField(){
-        String name = hp.getStringFromEditText(input_location);
-        String location = hp.getStringFromEditText(input_location);
-        String date = hp.getStringFromEditText(input_date);
-        String length = hp.getStringFromEditText(input_length);
-
-        return new String[] {name,location,date,length};
     }
 }
