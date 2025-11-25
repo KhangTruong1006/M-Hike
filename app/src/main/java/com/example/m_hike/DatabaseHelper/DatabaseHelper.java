@@ -68,18 +68,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public long insertHikeDetails(Hike hike){
-        ContentValues rowValues =   new ContentValues();
-        rowValues.put(HikeTable.NAME_COLUMN, hike.getName());
-        rowValues.put(HikeTable.LOCATION_COLUMN, hike.getLocation());
-        rowValues.put(HikeTable.DATE_COLUMN, hike.getDate());
-        rowValues.put(HikeTable.PARKING_COLUMN, hike.getParking());
-        rowValues.put(HikeTable.LENGTH_COLUMN, hike.getLength());
-        rowValues.put(HikeTable.DIFFICULTY_COLUMN, hike.getDifficulty());
-        rowValues.put(HikeTable.DESCRIPTION_COLUMN, hike.getDescription());
-        rowValues.put(HikeTable.FAVORITE_COLUMN, hike.getFavorite());
-        rowValues.put(HikeTable.COMPLETED_COLUMN, hike.getCompleted());
-
+        ContentValues rowValues = NewHikeContentValues(hike);
         return database.insertOrThrow(HikeTable.TABLE,null,rowValues);
+    }
+
+    public void updateHikeNameById(Hike hike, int id){
+        ContentValues rowValues = NewHikeContentValues(hike);
+        database.update(HikeTable.TABLE,rowValues,HikeTable.ID_COLUMN+ " = ?", new String[]{String.valueOf(id)});
     }
 
     public Hike findHikeById(int id){
@@ -88,24 +83,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor result = database.rawQuery(query,selectionArgs);
 
         if(result.moveToFirst()){
-            int hike_id = result.getInt(0);
-            String name = result.getString(1);
-            String location = result.getString(2);
-            String date = result.getString(3);
-            int parking = result.getInt(4);
-            double length = result.getDouble(5);
-            String difficulty = result.getString(6);
-            String description = result.getString(7);
-            int favorite = result.getInt(8);
-            int completed = result.getInt(9);
-
-            Hike hike = new Hike(hike_id,name,location,date,parking,length,difficulty,description,favorite,completed);
+            Hike hike = retrieveHike(result);
             result.close();
             return hike;
         }
 
         result.close();
         return null;
+    }
+
+    public void deleteHike(int id){
+        database.delete(HikeTable.TABLE, HikeTable.ID_COLUMN +" = ?", new String[]{String.valueOf(id)});
     }
     public ArrayList<Hike> getHikes(){
         Cursor results = database.query(HikeTable.TABLE, new String[] {HikeTable.ID_COLUMN,"name","location","date","parking","length","difficulty","description","favorite","completed"},
@@ -114,20 +102,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ArrayList<Hike> listHike = new ArrayList<>();
         results.moveToFirst();
         while(!results.isAfterLast()){
-            int hike_id = results.getInt(0);
-            String name = results.getString(1);
-            String location = results.getString(2);
-            String date = results.getString(3);
-            int parking = results.getInt(4);
-            double length = results.getDouble(5);
-            String difficulty = results.getString(6);
-            String description = results.getString(7);
-            int favorite = results.getInt(8);
-            int completed = results.getInt(9);
 
-            listHike.add(new Hike(hike_id,name,location,date,parking,length,difficulty,description,favorite,completed));
+            listHike.add(retrieveHike(results));
             results.moveToNext();
         }
         return listHike;
+    }
+
+    private Hike retrieveHike(Cursor result){
+        int hike_id = result.getInt(0);
+        String name = result.getString(1);
+        String location = result.getString(2);
+        String date = result.getString(3);
+        int parking = result.getInt(4);
+        double length = result.getDouble(5);
+        String difficulty = result.getString(6);
+        String description = result.getString(7);
+        int favorite = result.getInt(8);
+        int completed = result.getInt(9);
+
+        return new Hike(hike_id,name,location,date,parking,length,difficulty,description,favorite,completed);
+    }
+    private ContentValues NewHikeContentValues(Hike hike){
+        ContentValues values = new ContentValues();
+        values.put(HikeTable.NAME_COLUMN, hike.getName());
+        values.put(HikeTable.LOCATION_COLUMN, hike.getLocation());
+        values.put(HikeTable.DATE_COLUMN, hike.getDate());
+        values.put(HikeTable.PARKING_COLUMN, hike.getParking());
+        values.put(HikeTable.LENGTH_COLUMN, hike.getLength());
+        values.put(HikeTable.DIFFICULTY_COLUMN, hike.getDifficulty());
+        values.put(HikeTable.DESCRIPTION_COLUMN, hike.getDescription());
+        values.put(HikeTable.FAVORITE_COLUMN, hike.getFavorite());
+        values.put(HikeTable.COMPLETED_COLUMN, hike.getCompleted());
+
+        return values;
     }
 }
