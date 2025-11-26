@@ -3,12 +3,12 @@ package com.example.m_hike.Observation;
 public class Observation {
     private int id;
     private String observation;
-    private int date;
+    private String date;
     private String type;
     private String description;
     private int hike_id;
 
-    public Observation(String observation, int date, String type, String description, int hike_id){
+    public Observation(String observation, String  date, String type, String description, int hike_id){
         this.observation = observation;
         this.date = date;
         this.type = type;
@@ -16,7 +16,7 @@ public class Observation {
         this.hike_id = hike_id;
     }
 
-    public Observation(int id,String observation, int date, String type, String description, int hike_id){
+    public Observation(int id,String observation, String date, String type, String description, int hike_id){
         this.id = id;
         this.observation = observation;
         this.date = date;
@@ -39,10 +39,10 @@ public class Observation {
     public String getObservation() {
         return observation;
     }
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
-    public int getDate() {
+    public String getDate() {
         return date;
     }
     public void setType(String type) {
