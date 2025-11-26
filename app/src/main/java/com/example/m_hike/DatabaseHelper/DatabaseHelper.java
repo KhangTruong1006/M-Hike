@@ -9,6 +9,7 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
 import com.example.m_hike.Hike.Hike;
+import com.example.m_hike.Observation.Observation;
 
 import java.util.ArrayList;
 
@@ -63,24 +64,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE %s (" +
                 "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "%s TEXT NOT NULL, " +
-                "%s INTEGER NOT NULL, " +
+                "%s TEXT NOT NULL, " +
                 "%s TEXT, " +
                 "%s TEXT, " +
-                "FOREIGN KEY (%s) REFERENCES %s (%s))",
-            ObservationTable.TABLE, ObservationTable.ID_COLUMN,ObservationTable.OBSERVATION_COLUMN,
-            ObservationTable.DATE_COLUMN,ObservationTable.TYPE_COLUMN, ObservationTable.DESCRIPTION_COLUMN,
-            ObservationTable.HIKE_ID_COLUMN, HikeTable.TABLE, HikeTable.ID_COLUMN
+                "%s INTEGER, " +
+                "FOREIGN KEY(%s) REFERENCES %s(%s) ON DELETE CASCADE);",
+            ObservationTable.TABLE,
+            ObservationTable.ID_COLUMN,
+            ObservationTable.OBSERVATION_COLUMN,
+            ObservationTable.DATE_COLUMN,
+            ObservationTable.TYPE_COLUMN,
+            ObservationTable.DESCRIPTION_COLUMN,
+            ObservationTable.HIKE_ID_COLUMN,
+            ObservationTable.HIKE_ID_COLUMN,
+
+            HikeTable.TABLE, HikeTable.ID_COLUMN
     );
 
     public DatabaseHelper(Context context){
-        super(context,DATABASE_NAME,null,1);
+        super(context,DATABASE_NAME,null,2);
         database =getWritableDatabase();
     }
     @Override
     public void onCreate(SQLiteDatabase database){
 //        ! REMEMBER TO ADD THE SECOND TABLE !
-        database.execSQL(HIKE_TABLE_CREATE);
-        database.execSQL(OBSERVATION_TABLE_CREATE);
+        try {
+            database.execSQL(HIKE_TABLE_CREATE);
+            database.execSQL(OBSERVATION_TABLE_CREATE);
+        } catch (Exception e) {
+            Log.d("DatabaseHelper", "Error creating databases");
+        }
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
@@ -92,6 +105,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    @Override
+    public void onConfigure(SQLiteDatabase db) {
+        super.onConfigure(db);
+        db.setForeignKeyConstraintsEnabled(true);
+    }
+
+
+    //    HIKE TABLE
     public long insertHikeDetails(Hike hike){
         ContentValues rowValues = NewHikeContentValues(hike);
         return database.insertOrThrow(HikeTable.TABLE,null,rowValues);
@@ -124,10 +145,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void deleteHike(int id){
-        database.delete(HikeTable.TABLE, HikeTable.ID_COLUMN +" = ?", new String[]{String.valueOf(id)});
+        database.delete(HikeTable.TABLE, HikeTable.ID_COLUMN + " = ?", new String[]{String.valueOf(id)});
     }
     public ArrayList<Hike> getHikes(){
-        Cursor results = database.query(HikeTable.TABLE, new String[] {HikeTable.ID_COLUMN,"name","location","date","parking","length","difficulty","description","favorite","completed"},
+        Cursor results = database.query(HikeTable.TABLE, null,
                 null,null, null,null,HikeTable.ID_COLUMN);
 
         ArrayList<Hike> listHike = new ArrayList<>();
@@ -167,5 +188,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(HikeTable.COMPLETED_COLUMN, hike.getCompleted());
 
         return values;
+    }
+
+//    OBSERVATION TABLE
+    public long insertObservation(Observation observation){
+        ContentValues values = new ContentValues();
+        values.put(ObservationTable.OBSERVATION_COLUMN,observation.getObservation());
+        values.put(ObservationTable.DATE_COLUMN, observation.getDate());
+        values.put(ObservationTable.TYPE_COLUMN,observation.getType());
+        values.put(ObservationTable.DESCRIPTION_COLUMN,observation.getDescription());
+        values.put(ObservationTable.HIKE_ID_COLUMN,observation.getHike_id());
+
+        return database.insertOrThrow(ObservationTable.TABLE,null,values);
+    }
+
+    public ArrayList<Observation> getObservation(int hike_id){
+        String selection = String.format("%s = ?", ObservationTable.HIKE_ID_COLUMN);
+        String[] selectionArgs = new String[]{String.valueOf(hike_id)};
+        String[] columns = new String[]{ObservationTable.OBSERVATION_COLUMN, ObservationTable.DATE_COLUMN, ObservationTable.TYPE_COLUMN, ObservationTable.DESCRIPTION_COLUMN};
+        Cursor results = database.query(ObservationTable.TABLE,null,selection,selectionArgs,null,null,null);
+
+        ArrayList<Observation> observations = new ArrayList<>();
+//        results.moveToFirst();
+        while (results.moveToNext()){
+            observations.add(retrieveObservation(results));
+//            results.moveToNext();
+        }
+        results.close();
+        return observations;
+    }
+
+    private Observation retrieveObservation(Cursor cursor){
+        int observation_id = cursor.getInt(0);
+        String observation = cursor.getString(1);
+        String date = cursor.getString(2);
+        String type = cursor.getString(3);
+        String description = cursor.getString(4);
+        int hike_id = cursor.getInt(5);
+
+        return new Observation(observation_id,observation,date,type,description,hike_id);
+    }
+
+    public void deleteObservation(int id){
+        database.delete(ObservationTable.TABLE,ObservationTable.ID_COLUMN + " = ?", new String[]{String.valueOf(id)});
     }
 }
