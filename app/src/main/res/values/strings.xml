@@ -24,6 +24,7 @@
     <string name="title_delete_hike">Delete Hike</string>
 
     <string name="title_observation_input">Enter Observation below</string>
+    <string name="title_observation_delete">Delete Observation</string>
 
     <!--    Buttons-->
     <string name="btn_hike">Hike</string>
@@ -43,10 +44,13 @@
     <string name="hint_description">Description</string>
 
     <string name="hint_observation">A cute fox</string>
+    <string name="hint_observation_count">observation_count</string>
+
     <!--    Message-->
     <string name="msg_mandatory_fields">Please fill all mandatory fields</string>
     <string name="msg_delete_hike_confirmation">Are you sure to delete </string>
     <string name="msg_new_hike">New hike has created successfully</string>
+    <string name="msg_new_observation">New observation has created successfully</string>
 
     <!--    Arrays-->
     <string-array name="difficulties_list">
