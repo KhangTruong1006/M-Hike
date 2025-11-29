@@ -52,7 +52,7 @@ public class ObservationAdapter extends RecyclerView.Adapter<ObservationAdapter.
 
     public class ObservationViewHolder extends RecyclerView.ViewHolder{
         public TextView tvObservation, tvDate, tvType, tvDescription;
-        private ImageButton btn_edit, btn_delete;
+        private ImageButton btn_delete;
 
         public ObservationViewHolder(@NonNull View view){
             super(view);
