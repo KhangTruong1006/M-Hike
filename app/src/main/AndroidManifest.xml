@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MHike">
         <activity
-            android:name=".SelectionActivity"
+            android:name=".Search.SearchActivity"
             android:exported="false" />
         <activity
             android:name=".Observation.ObservationNewActivity"
