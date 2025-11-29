@@ -31,6 +31,8 @@
     <string name="btn_observation">Observation</string>
     <string name="btn_favorite">Favorite</string>
     <string name="btn_manage">Manage</string>
+    <string name="btn_search">Search</string>
+
     <string name="btn_add">New</string>
     <string name="btn_save">Save</string>
     <string name="btn_delete">Delete</string>
@@ -45,6 +47,8 @@
 
     <string name="hint_observation">A cute fox</string>
     <string name="hint_observation_count">observation_count</string>
+
+    <string name="hint_search">Search</string>
 
     <!--    Message-->
     <string name="msg_mandatory_fields">Please fill all mandatory fields</string>
