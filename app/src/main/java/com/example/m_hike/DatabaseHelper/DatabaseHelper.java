@@ -144,6 +144,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public ArrayList<Hike> searchHike(String keyword){
+        String query = String.format("SELECT * FROM %s WHERE %s LIKE ? OR %s LIKE ? OR %s LIKE ? OR %s LIKE ?",
+                HikeTable.TABLE,
+                HikeTable.NAME_COLUMN,HikeTable.LOCATION_COLUMN,HikeTable.DATE_COLUMN, HikeTable.DIFFICULTY_COLUMN);
+        String searchKeywork = "%" + keyword + "%";
+        String[] selectionArgs = {searchKeywork, searchKeywork, searchKeywork, searchKeywork};
+        Cursor result = database.rawQuery(query,selectionArgs);
+
+        ArrayList<Hike> listHike = new ArrayList<>();
+        while(result.moveToNext()){
+            listHike.add(retrieveHike(result));
+        }
+        result.close();
+        return listHike;
+    }
+
     public void deleteHike(int id){
         database.delete(HikeTable.TABLE, HikeTable.ID_COLUMN + " = ?", new String[]{String.valueOf(id)});
     }
