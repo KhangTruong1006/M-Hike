@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.m_hike.DatabaseHelper.DatabaseHelper;
+import com.example.m_hike.Observation.ObservationActivity;
 import com.example.m_hike.R;
 
 import org.jspecify.annotations.NonNull;
@@ -79,15 +80,25 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
                 }
             }
         });
+
+        holder.itemHikeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, ObservationActivity.class);
+                intent.putExtra("HIKE_ID", current.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount(){return hikes.size();}
 
     public class HikeViewHolder extends RecyclerView.ViewHolder{
-        public TextView tvHikeName, tvDate, tvLocation, tvParking, tvLength, tvDifficulty,tvCompletion,tvDescription;
-        public LinearLayout itemHikeLayout;
-        public ImageButton btn_favorite, btn_edit_hike, btn_delete_hike;
+        public TextView tvHikeName, tvDate, tvLocation, tvParking, tvLength, tvDifficulty, tvCompletion, tvDescription;
+        public LinearLayout itemHikeLayout, itemHikeDescriptionLayout;
+        public ImageButton btn_favorite, btn_edit_hike, btn_delete_hike, btn_description;
 
         public HikeViewHolder(@NonNull View itemView){
             super(itemView);
@@ -99,24 +110,34 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
             tvDifficulty = itemView.findViewById(R.id.tv_item_hike_difficulty);
             tvCompletion = itemView.findViewById(R.id.tv_item_hike_completion);
             tvDescription = itemView.findViewById(R.id.tv_item_hike_description);
+
             itemHikeLayout = itemView.findViewById(R.id.item_hike_layout);
+            itemHikeDescriptionLayout = itemView.findViewById(R.id.item_hike_description_layout);
+
             btn_favorite = itemView.findViewById(R.id.btn_favorite);
             btn_edit_hike = itemView.findViewById(R.id.btn_edit_hike);
             btn_delete_hike = itemView.findViewById(R.id.btn_delete_hike);
-
+            btn_description = itemView.findViewById(R.id.btn_description);
         }
     }
 
     private void enableDescription(@NonNull HikeViewHolder holder, Hike current){
         if(!current.getDescription().equalsIgnoreCase("")) {
+            holder.itemHikeDescriptionLayout.setVisibility(View.GONE);
             holder.tvDescription.setText(current.getDescription());
-            holder.itemHikeLayout.setOnClickListener(new View.OnClickListener() {
+
+            holder.btn_description.setVisibility(View.VISIBLE);
+            holder.btn_description.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (holder.tvDescription.getVisibility() == View.VISIBLE) {
-                        holder.tvDescription.setVisibility(View.GONE);
+                    int visibility = holder.itemHikeDescriptionLayout.getVisibility();
+
+                    if (visibility == View.VISIBLE) {
+                        holder.btn_description.setImageResource(R.drawable.arrow_drop_down_24dp_b7b7b7_fill0_wght400_grad0_opsz24);
+                        holder.itemHikeDescriptionLayout.setVisibility(View.GONE);
                     } else {
-                        holder.tvDescription.setVisibility(View.VISIBLE);
+                        holder.btn_description.setImageResource(R.drawable.arrow_drop_up_24dp_b7b7b7_fill0_wght400_grad0_opsz24);
+                        holder.itemHikeDescriptionLayout.setVisibility(View.VISIBLE);
                     }
                 }
             });
