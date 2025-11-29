@@ -30,9 +30,4 @@ public class HomepageActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HikeActivity.class);
         startActivity(intent);
     }
-
-    public void startObservationActivity(View view){
-        Intent intent = new Intent(this, SelectionActivity.class);
-        startActivity(intent);
-    }
 }
