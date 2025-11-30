@@ -36,4 +36,9 @@ public class HomepageActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
+
+    public void startMapActivity(View view){
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
 }
