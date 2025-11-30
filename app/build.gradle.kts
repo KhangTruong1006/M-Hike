@@ -1,3 +1,5 @@
+val MAP_API_KEY: String = project.findProperty("MAP_API_KEY") as String? ?: ""
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -14,6 +16,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders["MAP_API_KEY"] =MAP_API_KEY
     }
 
     buildTypes {
@@ -41,6 +44,7 @@ dependencies {
     implementation(libs.cardview)
     implementation(libs.recyclerview)
     implementation(libs.androidx.material)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
