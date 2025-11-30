@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="169dp"
+        android:layout_marginBottom="170dp"
         android:text="@string/app_name"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/btn_hike"
@@ -23,10 +23,10 @@
     <Button
         android:id="@+id/btn_hike"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="24dp"
         android:onClick="startHikeActivity"
         android:text="@string/btn_hike"
         app:layout_constraintBottom_toTopOf="@+id/btn_homepage_search"
@@ -37,28 +37,15 @@
     <Button
         android:id="@+id/btn_homepage_search"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="385dp"
         android:onClick="startSearchActivity"
         android:text="@string/btn_search"
-        app:layout_constraintBottom_toTopOf="@+id/btn_favorite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_hike" />
-
-    <Button
-        android:id="@+id/btn_favorite"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="267dp"
-        android:text="@string/btn_favorite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_homepage_search" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_hike" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
