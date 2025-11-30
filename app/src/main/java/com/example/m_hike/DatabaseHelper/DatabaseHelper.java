@@ -127,6 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(HikeTable.FAVORITE_COLUMN, favoriteStatus);
         database.update(HikeTable.TABLE,values,HikeTable.ID_COLUMN+ " = ?", new String[]{String.valueOf(id)});
+        database.close();
     }
 
     public Hike findHikeById(int id){
