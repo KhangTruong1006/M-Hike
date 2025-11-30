@@ -8,6 +8,7 @@
     tools:context=".Hike.NewHikeActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="100dp">
+
     <ScrollView
         android:id="@+id/sv_new_hike"
         android:layout_width="match_parent"
@@ -31,14 +32,26 @@
                 android:text="@string/title_hike_input"
                 android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/tv_name"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/tv_name"
-                tools:layout_editor_absoluteX="9dp"
-                tools:layout_editor_absoluteY="62dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/tv_name"
+                    tools:layout_editor_absoluteX="9dp"
+                    tools:layout_editor_absoluteY="62dp" />
+                <TextView
+                    style="@style/MandatoryAsterisk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_asterisk"/>
+            </LinearLayout>
+
+
 
             <EditText
                 android:id="@+id/input_name"
@@ -50,14 +63,25 @@
                 tools:layout_editor_absoluteX="9dp"
                 tools:layout_editor_absoluteY="82dp" />
 
-            <TextView
-                android:id="@+id/tv_location"
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/tv_location"
-                tools:layout_editor_absoluteX="9dp"
-                tools:layout_editor_absoluteY="144dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/tv_location"
+                    tools:layout_editor_absoluteX="9dp"
+                    tools:layout_editor_absoluteY="144dp" />
+                <TextView
+                    style="@style/MandatoryAsterisk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_asterisk"/>
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/input_location"
@@ -68,14 +92,25 @@
                 tools:layout_editor_absoluteX="9dp"
                 tools:layout_editor_absoluteY="163dp" />
 
-            <TextView
-                android:id="@+id/tv_Date"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/tv_date"
-                tools:layout_editor_absoluteX="9dp"
-                tools:layout_editor_absoluteY="224dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/tv_date"
+                    tools:layout_editor_absoluteX="9dp"
+                    tools:layout_editor_absoluteY="224dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_asterisk"
+                    style="@style/MandatoryAsterisk"/>
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/input_date"
@@ -84,17 +119,29 @@
                 android:ems="10"
                 android:hint="@string/hint_date"
                 android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
                 tools:layout_editor_absoluteX="9dp"
                 tools:layout_editor_absoluteY="244dp" />
-
-            <TextView
-                android:id="@+id/textView2"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:text="@string/tv_length"
-                tools:layout_editor_absoluteX="10dp"
-                tools:layout_editor_absoluteY="309dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:text="@string/tv_length"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="309dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_asterisk"
+                    style="@style/MandatoryAsterisk"/>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
