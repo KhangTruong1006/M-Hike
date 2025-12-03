@@ -65,10 +65,11 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
 
         clickDeleteButton(holder,current,position);
 
+//        Update favourite status
         holder.btn_favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(current.getFavorite() == 0){
+                if(favorite == 0){
                     current.setFavorite(1);
                     holder.btn_favorite.setImageResource(R.drawable.favorite_24dp_ea3323_fill1_wght400_grad0_opsz24);
                     db.updateFavoriteStatus(current.getId(),1);
@@ -81,6 +82,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
             }
         });
 
+//        Each hike card is a button. When clicked, it will show a list of observations
         holder.itemHikeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +123,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
         }
     }
 
+//    If there is no description, then it will be hidden
     private void enableDescription(@NonNull HikeViewHolder holder, Hike current){
         if(!current.getDescription().equalsIgnoreCase("")) {
             holder.itemHikeDescriptionLayout.setVisibility(View.GONE);
@@ -167,6 +170,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.HikeViewHolder
         });
     }
 
+//    Show message box to confirm before deleting
     AlertDialog createDialog(Context context, Hike current, int position){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.title_delete_hike);
