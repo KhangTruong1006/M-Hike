@@ -122,6 +122,4 @@ public class NewHikeActivity extends AppCompatActivity implements DatePickerDial
         }
         return false;
     }
-
-
 }
