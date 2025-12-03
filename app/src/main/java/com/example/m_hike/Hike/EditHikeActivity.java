@@ -134,10 +134,6 @@ public class EditHikeActivity extends AppCompatActivity implements DatePickerDia
         finish();
     }
 
-    private void deleteHike(){
-        db.deleteHike(id);
-        finish();
-    }
     private void setSpinnerToValue(Spinner spinner, String value) {
         for (int i = 0; i < spinner.getAdapter().getCount(); i++) {
             if (spinner.getAdapter().getItem(i).toString().equalsIgnoreCase(value)) {
