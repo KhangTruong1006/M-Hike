@@ -62,7 +62,12 @@ public class ObservationNewActivity extends AppCompatActivity {
         });
     }
     public  void clickNewObservationButton(View view){
-        saveObservationDetails();
+        if(!isMandatoryFieldEmpty(view)){
+            saveObservationDetails();
+            hp.showMessage(this,R.string.msg_new_observation);
+            return;
+        }
+        hp.showMessage(this,R.string.msg_mandatory_fields);
     }
     private void saveObservationDetails(){
         DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -74,7 +79,14 @@ public class ObservationNewActivity extends AppCompatActivity {
         Observation newObservation = new Observation(observation,date,type,description,hike_id);
         dbHelper.insertObservation(newObservation);
 
-        hp.showMessage(this,R.string.msg_new_observation);
         finish();
+    }
+
+    private boolean isMandatoryFieldEmpty(View view){
+        String observation = hp.getStringFromEditText(input_observation);
+        if(observation.isEmpty()){
+            return true;
+        }
+        return false;
     }
 }
